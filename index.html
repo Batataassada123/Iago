@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <style>
+        body {
+            background-color: #1900ff;
+            font-family: 'Times New Roman', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #000000; /* Cor padrão para o texto */
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #426aec;
+            border: 4px solid #ffffff;
+            margin-top: 50px;
+            text-align: left;
+        }
+        .dark-mode {
+            background-color: #000000;
+            color: #ffffff; /* Cor para texto no modo escuro */
+        }
+        h1 {
+            color: #00ff22;
+            text-align: center;
+        }
+        p {
+            color: inherit;
+            line-height: 1.6;
+        }
+        h2 {
+            color: #00ff22a2;
+            text-align: left;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOMO ERECTUS</h1>
+        <p>Esta é a página inicial do nosso site. Aqui você encontrará conteúdo interessante sobre o passado da humanidade, mais precisamente da espécie que dominou o fogo, o Homo Erectus.</p>
+        <h2>Introdução</h2>
+        <p>Homo erectus é considerada a mais longeva espécie do gênero homo, tendo vivido aproximadamente entre 1,9 milhões e 110 mil anos atrás. Pesquisadores acreditam ter se originado no Cáucaso a partir de um grupo de Homo habilis, migrando de volta a África, para a Europa e Ásia.</p>
+        <p>O Homo erectus foi provavelmente o precursor de subespécies e espécies do gênero homo, como o H. antecessor, H. floresiensis, H. heidelbergensis e H. denisovano. O tempo do Homo erectus trouxe transformações biológicas e culturais significativas herdadas pelas espécies sucessoras. Destas mudanças podemos citar a menor quantidade e/ou menor espessura dos pelos, a proporção dos membros superiores e inferiores, a postura ereta terrestre. Posteriormente também desenvolveu a prática da caça e o controle do fogo.</p>                    
+        <img id="homoImage" src="path_to_your_image/homo_erectos.jpeg" alt="Descrição da imagem para acessibilidade">
+        <h2>Características</h2>
+        <p>O crânio do Homo erectus (imagem abaixo) era maior que o de seu antecessor, Homo habilis, e menor que dos sucessores Homo neanderthalensis e sapiens. Dependendo de diferentes condições, sua caixa cranial poderia medir entre 700 e 1200 cm³, mas em comum tinham a face plana. Sua altura poderia variar entre 1,40 e 1,80 metros. Os ossos eram mais espessos que dos Homo sapiens, indicando que sua sobrevivência dependia da superação de condições físicas mais pesadas. A ponte nasal proeminente revela que o Homo erectus foi uma espécie adaptada a tempos frios e secos, o que ajudou em sua rápida dispersão para ambientes de temperaturas mais baixas fora do continente africano.</p>
+        <p>Outra característica marcante do Homo erectus foi sua capacidade de produzir novas, mais eficientes e sofisticadas ferramentas de pedra, como bifaces e machados de mão. Essa produção ficou conhecida como cultura Acheuliana, cujo surgimento é concomitante a manifestação do chamado Homo ergaster, como era conhecido o Homo erectus. Vestígios desta cultura se encontram em diversas partes do mundo e indicam a capacidade de dispersão desta espécie de hominina. Há indícios também que o Homo erectus foi o primeiro a usar o fogo, aproveitando-se de raios ou incêndios.</p>
+        <img id="craniumImage" src="path_to_your_image/cranio-homo-erectus.jpg" alt="Descrição da imagem para acessibilidade">
+        <p>Abaixo você encontra diversos vídeos explicando com detalhes a vida de nossos ancestrais:</p>
+        <ul>
+            <li><a href="https://1drv.ms/u/s!AmfFHAZlXg5RhosXuwnAhbVBThikVA?e=LhzfIk" class="button" target="_blank">Vídeos de História sobre Homo Erectus</a></li>
+            <li><a href="https://1drv.ms/u/s!AmfFHAZlXg5RhosZS8mTyE2QVqkspQ?e=UZ6xF6" class="button" target="_blank">Áudios e tabelas sobre Homo Erectus</a></li>
+        </ul>
+        <button onclick="toggleBackgroundColor()">Alterar Fundo</button>
+        <button onclick="toggleFeatures()">Mostrar/Esconder Características</button>
+        <button onclick="toggleTextMode()">Alternar Modo de Texto</button>
+        <p id="visitCounter">Esta página foi visitada <span id="count">0</span> vezes.</p>
+        <button onclick="changeCraniumImage()">Alterar Imagem de Crânio</button>
+    </div>
+
+    <script>
+        // Contador de visitas
+        let count = localStorage.getItem('visitCount') || 0;
+        document.getElementById('count').textContent = count;
+
+        function incrementCount() {
+            count++;
+            localStorage.setItem('visitCount', count);
+            document.getElementById('count').textContent = count;
+        }
+
+        incrementCount(); // Chama a função ao carregar a página
+
+        // Função para alternar entre dois esquemas de cores de fundo
+        let colorScheme = 0; // 0 = padrão, 1 = alternativo
+        function toggleBackgroundColor() {
+            const body = document.body;
+            if (colorScheme === 0) {
+                body.style.backgroundColor = '#ffffff';
+                colorScheme = 1;
+            } else {
+                body.style.backgroundColor = '#1900ff';
+                colorScheme = 0;
+            }
+        }
+
+        // Função para ocultar/mostrar a seção de características
+        let featuresVisible = true;
+        function toggleFeatures() {
+            const featuresSection = document.querySelector('h2 + p');
+            featuresVisible = !featuresVisible;
+            featuresSection.style.display = featuresVisible ? 'block' : 'none';
+        }
+
+        // Função para alternar entre o modo claro e escuro do texto
+        let textMode = 'light';
+        function toggleTextMode() {
+            const body = document.body;
+            if (textMode === 'light') {
+                body.classList.add('dark-mode');
+                textMode = 'dark';
+            } else {
+                body.classList.remove('dark-mode');
+                textMode = 'light';
+            }
+        }
+
+        // Função para alternar entre diferentes imagens de crânios
+        let craniumImageIndex = 0;
+        const craniumImages = [
+            'path_to_your_image/cranio-homo-erectus.jpg',
+            'path_to_another_image/another-cranium.jpg'
+            // Adicione mais caminhos de imagens conforme necessário
+        ];
+        function changeCraniumImage() {
+            craniumImageIndex = (craniumImageIndex + 1) % craniumImages.length;
+            document.getElementById('craniumImage').src = craniumImages[craniumImageIndex];
+        }
+    </script>
+</body>
+</html>
+
